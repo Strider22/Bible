@@ -1,0 +1,79 @@
+<!--From https://www.youtube.com/watch?v=fDqGfrnutug-->
+<!doctype html>
+<html ng-app="notesApp">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+</head>
+
+
+<body ng-controller="MainCtrl as ctrl">
+<h1>Hebrews 11:6</h1>
+<button ng-if="ctrl.version != 'NASB'" ng-click="ctrl.setVersion('NASB')">
+    NASB
+</button>
+<button ng-if="ctrl.version != 'NIV'" ng-click="ctrl.setVersion('NIV')">
+    NIV
+</button>
+<button ng-if="ctrl.version != 'EXB'" ng-click="ctrl.setVersion('EXB')">
+    EXB
+</button>
+<button ng-if="ctrl.version != 'WEB'" ng-click="ctrl.setVersion('WEB')">
+    WEB
+</button>
+<button ng-if="ctrl.version != 'NLT'" ng-click="ctrl.setVersion('NLT')">
+    NLT
+</button>
+<button ng-if="ctrl.version != 'KJV'" ng-click="ctrl.setVersion('KJV')">
+    KJV
+</button>
+<br/>
+<br/>
+<br/>
+{{ctrl.message}}
+
+
+<script>
+    angular.module('notesApp', [])
+            .controller('MainCtrl', [function () {
+                var self = this;
+
+                self.version = "NASB";
+
+                self.setVersion = function (version) {
+                    self.version = version;
+                    self.message = version + ': ';
+                    switch(version) {
+                        case "NASB":
+                            self.message += "And without faith it is impossible to please Him, for he who comes to God must believe that He is and that He is a rewarder of those who seek Him.";
+                            break;
+                        case "NIV":
+                            self.message += "And without faith it is impossible to please God, because anyone who comes to him must " +
+                                    "believe that he exists and that he rewards those who earnestly seek him.";
+                            break;
+                        case "EXB":
+                            self.message += " [L And] Without faith no one can please God. [L For; Because] Anyone who " +
+                                    "comes to God must believe that he ·is real [exists] and that he rewards those who ·truly want to find [earnestly/sincerely seek] him.";
+                            break;
+                        case "WEB":
+                            self.message += " Without faith it is impossible to be well pleasing to him, for he who comes to God must believe that he " +
+                                    "exists, and that he is a rewarder of those who seek him.";
+                            break;
+                        case "NLT":
+                            self.message += "And it is impossible to please God without faith. Anyone who wants to come to him must believe that " +
+                                    "God exists and that he rewards those who sincerely seek him.";
+                            break;
+                        case "KJV":
+                            self.message += " But without faith it is impossible to please him: for he that cometh to God must believe that he is, " +
+                                    "and that he is a rewarder of them that diligently seek him.";
+                            break;
+                    }
+                };
+
+                self.setVersion('NASB');
+
+            }]);
+
+</script>
+</body>
+</html>

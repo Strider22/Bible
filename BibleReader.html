@@ -1,0 +1,56 @@
+<!--A simple dojo application that:
+  - programatically creates a button
+  - counts the number of button clicks
+  - updates text when the button is pressed
+
+  - reference: http://dojotoolkit.org/reference-guide/1.10/dijit/form/Button.html
+  - reading file systemhttp://stackoverflow.com/questions/2614231/dojo-reading-a-json-file-from-a-local-filesystem-using-dojo-xhrget
+  -->
+<html>
+<head>
+
+    <!-- Set the style -->
+    <link rel="stylesheet" type="text/css"
+          href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css">
+    <!-- Asynchronously load the library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js"
+            data-dojo-config="async: true"></script>
+</head>
+
+<!-- Make sure your page uses the style defined above -->
+<body class="claro">
+
+<!-- Create html elements for the button and description text -->
+<button id="btn"></button>
+<p id="buttonText">Hello World!</p>
+
+
+<!-- The actual Dojo code -->
+<script>
+    //Require loads code in to the current scope.
+    require([
+        //Tell dojo what elements you need to use
+        'dijit/form/Button',
+            'dojo/request/xhr',
+        'dojo/domReady!'], function (Button, xhr) {
+
+        var myButton = new Button({
+            label: "myButton",
+            val: 0,
+            onClick: function () {
+                xhr("test.json",{
+                    handleAs: "json"
+                }).then(function(data){
+                    document.write("data is " + data);
+                }, function(err){
+                    document.write("An error occurred reading data");
+                }, function(evt){
+                    document.write("progress event");
+                });
+            }
+        }, "btn").startup();
+    });
+
+</script>
+</body>
+</html>

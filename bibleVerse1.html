@@ -1,0 +1,73 @@
+<!--From AngularJS Up and Running chapter 2-->
+<!doctype html>
+<html ng-app="notesApp">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+</head>
+
+<body ng-controller="MainCtrl as ctrl">
+<h1>Hebrews 11:6</h1>
+<button ng-click="ctrl.NASB()">
+    NASB
+</button>
+<button ng-click="ctrl.NIV()">
+    NIV
+</button>
+<button ng-click="ctrl.EXB()">
+    EXB
+</button>
+<button ng-click="ctrl.WEB()">
+    WEB
+</button>
+<button ng-click="ctrl.NLT()">
+    NLT
+</button>
+<button ng-click="ctrl.KJV()">
+    KJV
+</button>
+<br/>
+<br/>
+<br/>
+{{ctrl.message}}
+<script>
+    angular.module('notesApp', [])
+            .controller('MainCtrl', [function () {
+                var self = this;
+
+                self.NASB = function () {
+                    self.message = "And without faith it is impossible to please Him, for he who comes to God must believe that He is and that He is a rewarder of those who seek Him.";
+                };
+
+                self.NIV = function () {
+                    self.message = "And without faith it is impossible to please God, because anyone who comes to him must " +
+                            "believe that he exists and that he rewards those who earnestly seek him.";
+                };
+
+                self.EXB = function () {
+                    self.message = " [L And] Without faith no one can please God. [L For; Because] Anyone who " +
+                            "comes to God must believe that he ·is real [exists] and that he rewards those who ·truly want to find [earnestly/sincerely seek] him.";
+                };
+
+                self.WEB = function () {
+                    self.message = " Without faith it is impossible to be well pleasing to him, for he who comes to God must believe that he " +
+                            "exists, and that he is a rewarder of those who seek him.";
+                };
+
+                self.NLT = function () {
+                    self.message = "And it is impossible to please God without faith. Anyone who wants to come to him must believe that " +
+                            "God exists and that he rewards those who sincerely seek him.";
+                };
+
+                self.KJV = function(){
+                    self.message = " But without faith it is impossible to please him: for he that cometh to God must believe that he is, " +
+                            "and that he is a rewarder of them that diligently seek him.";
+                };
+
+                self.NASB();
+
+            }]);
+
+</script>
+</body>
+</html>
